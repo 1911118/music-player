@@ -1,0 +1,43 @@
+import tkinter as tk
+import pygame
+
+def load_music(file_path=""):
+    pygame.mixer.music.load(file_path)
+
+def play_music():
+    if pygame.mixer.music.get_busy():
+        stop_music()
+    pygame.mixer.music.play()
+
+def stop_music():
+    pygame.mixer.music.stop()
+
+def pause_music():
+    pygame.mixer.music.pause()
+
+def resume_music():
+    pygame.mixer.music.unpause()
+
+# Initialize Tkinter window
+root = tk.Tk()
+root.title("Python Music Player")
+
+# Initialize pygame.mixer
+pygame.mixer.init()
+
+# Create buttons for play, stop, pause, and resume
+play_button = tk.Button(root, text="Play", command=play_music)
+stop_button = tk.Button(root, text="Stop", command=stop_music)
+pause_button = tk.Button(root, text="Pause", command=pause_music)
+resume_button = tk.Button(root, text="Resume", command=resume_music)
+
+# Place buttons on the window
+play_button.pack()
+stop_button.pack()
+pause_button.pack()
+resume_button.pack()
+
+# Load the music (call this function before trying to play)
+load_music()
+
+root.mainloop()
